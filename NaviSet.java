@@ -507,11 +507,12 @@ public class NaviSet<T> extends AbstractSet<T> implements NavigableSet<T> {
         if (fromElement == null) {
             throw new NullPointerException();
         }
-        if (c.compare(fromElement, data.get(data.size() - 1)) > 0 || (c.compare(fromElement, data.get(data.size() - 1)) == 0 && !inclusive)) {
+        if (c.compare(fromElement, data.get(data.size() - 1)) > 0) {
             throw new IllegalArgumentException();
         }
         ArrayList<T> al = new ArrayList<>();
         NaviSet<T> naviSet = new NaviSet<>(al);
+        if (c.compare(fromElement, data.get(data.size() - 1)) == 0 && !inclusive) return naviSet;
         for (int i = data.indexOf(this.ceiling(fromElement)); i < data.size(); i++) {
             if (!(inclusive) && i == data.indexOf(this.ceiling(fromElement))) i++;
             al.add(data.get(i));
