@@ -428,7 +428,8 @@ public class NaviSet<T> extends AbstractSet<T> implements NavigableSet<T> {
         if (fromElement == null || toElement == null) {
             throw new NullPointerException();
         }
-        if (c.compare(fromElement, data.get(data.size() - 1)) > 0 || (c.compare(fromElement, data.get(data.size() - 1)) == 0 && !fromInclusive)) {
+        if (c.compare(fromElement, data.get(data.size() - 1)) > 0 || (c.compare(fromElement, data.get(data.size() - 1)) == 0 && !fromInclusive)
+            || ((c.compare(fromElement, data.get(0)) < 0) && (c.compare(toElement, data.get(0)) < 0))) {
             throw new IllegalArgumentException();
         }
         ArrayList<T> al = new ArrayList<>();
